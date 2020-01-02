@@ -1,3 +1,10 @@
+/*
+Ramiz Dündar
+2016400012
+Compiling
+Working
+*/
+
 #include <iostream>
 #include <vector>
 #include <fstream>
