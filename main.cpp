@@ -14,6 +14,12 @@ vector<string> shared_mem(11);
 int cnt = 0;
 int num_customers;
 
+int g_cabl = 0;
+int g_elec = 0;
+int g_gas = 0;
+int g_tele = 0;
+int g_wtr = 0;
+
 ofstream fout;
 
 
@@ -95,6 +101,13 @@ int main(int argc, char *argv[])
     for (int i = 0; i < num_customers; i++) {
         //cout << lines[i] << endl;
     }
+
+    fout << "All payments are completed." << endl;
+    fout << "CableTV: " << g_cabl << "TL" << endl;
+    fout << "Electricity: " << g_elec << "TL" << endl;
+    fout << "Gas: " << g_gas << "TL" << endl;
+    fout << "Telecommunication: " << g_tele << "TL" << endl;
+    fout << "Water: " << g_wtr << "TL" << endl;
     
 
     cout << "reached end" << endl;
@@ -146,6 +159,12 @@ void *atm(void *param) {
     int atm_num = *((int *)param);
     string str = "atm:::::  " + to_string(atm_num);
     cout << str << endl;
+
+    int cabl = 0;
+    int elec = 0;
+    int gas = 0;
+    int tele = 0;
+    int wtr = 0;
     
     while(true) {
         pthread_mutex_lock(&s[atm_num]);
@@ -156,6 +175,16 @@ void *atm(void *param) {
 
         if (cnt >= num_customers) {
             cout << "jkbRWUGBABGanglnlgnwg;AG" << endl;
+
+            pthread_mutex_lock(&t);
+            g_cabl += cabl;
+            g_elec += elec;
+            g_gas += gas;
+            g_tele += tele;
+            g_wtr += wtr;
+            
+
+            pthread_mutex_unlock(&t);
             break;
         }
 
@@ -177,6 +206,21 @@ void *atm(void *param) {
         string customer = token;
 
         string log = customer + "," + amount + "," + bill_type;
+
+        if (bill_type[0] == 'c') 
+            cabl += stoi(amount);
+        
+        if (bill_type[0] == 'e') 
+            elec += stoi(amount);
+
+        if (bill_type[0] == 'g') 
+            gas += stoi(amount);
+
+        if (bill_type[0] == 't') 
+            tele += stoi(amount);
+
+        if (bill_type[0] == 'w') 
+            wtr += stoi(amount);
 
 
         pthread_mutex_lock(&t);
