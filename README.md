@@ -8,9 +8,9 @@ Implemented a multi-threaded application for simulating a bill payment system, w
 
 For what it does and more detailed information please look into project pdf.
 
-## Running
+## Usage
 
-Just compile with make and then run the executable.
+Just compile with make then run the executable.
 
 ```
 make && time ./simulation input.txt
