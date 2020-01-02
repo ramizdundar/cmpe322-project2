@@ -1,2 +1,2 @@
 simulation : main.cpp
-	g++ -std=c++11 main.cpp -o simulation
+	g++ -std=c++11 -pthread main.cpp -o simulation

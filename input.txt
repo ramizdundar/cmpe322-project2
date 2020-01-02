@@ -1,4 +1,4 @@
-60
+100
 2,9,telecommunication,58
 14,3,water,131
 123,3,cableTV,63
